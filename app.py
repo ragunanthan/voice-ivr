@@ -39,7 +39,7 @@ def voicebot():
 
 
 @app.route("/voicemp3", methods=["POST"])
-def voice():
+def voicemp3():
     twiml_response = """
     <?xml version="1.0" encoding="UTF-8"?>
     <Response>
