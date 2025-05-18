@@ -37,6 +37,17 @@ def voicebot():
     resp.record(timeout=3, transcribe=True, max_length=10, action="/process")
     return Response(str(resp), mimetype="text/xml")
 
+
+@app.route("/voicemp3", methods=["POST"])
+def voice():
+    twiml_response = """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Response>
+        <Play>https://api.twilio.com/cowbell.mp3</Play>
+    </Response>
+    """
+    return Response(twiml_response, mimetype='text/xml')
+
 @app.route("/process", methods=["POST"])
 def process():
     transcript = request.form.get("TranscriptionText", "")
