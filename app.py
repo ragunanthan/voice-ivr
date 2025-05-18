@@ -1,5 +1,6 @@
 from flask import Flask, request, Response
 from twilio.twiml.voice_response import VoiceResponse, Gather
+import os
 
 app = Flask(__name__)
 
@@ -50,5 +51,7 @@ def process():
 def home():
     return "Voicebot is running!"
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # default to 5000 if not set
+    app.run(host="0.0.0.0", port=port, debug=True)
